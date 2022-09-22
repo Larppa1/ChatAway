@@ -7,7 +7,7 @@ import './Register.css'
 
 var navigate = ''
 
-function Register() {
+export default function Register() {
     navigate = useNavigate()
     return(
         <div className='registerContainer'>
@@ -32,14 +32,22 @@ function Register() {
     )
 }
 
+//Register user
 const registerUser = async () => {
+
+    //Get 'email' and 'password' values from emailInput and passwordInput elements
     const email = document.getElementById('emailInput').value
     const password = document.getElementById('passwordInput').value
 
+    //IF 'email' does not contain '@'-sign, alert user for invalid email address
     if(!email.includes('@')) {
         alert('Please give a valid email address')
+    
+    //IF 'password' is under 6 characters, alert user for too short password
     }else if(password.length < 6) {
         alert('Password too short')
+    
+    //Else try to create new account with given email and password values and navigate to Chat.js, on error situations catch error and log error to console
     }else {
         try {
             const user = await createUserWithEmailAndPassword(auth, email, password)
@@ -53,5 +61,3 @@ const registerUser = async () => {
         }
     }
 }
-
-export default Register;

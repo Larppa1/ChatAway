@@ -6,7 +6,7 @@ import './Login.css'
 
 var navigate = ''
 
-function Login() {
+export default function Login() {
     navigate = useNavigate()
     return(
         <div className='loginContainer'>
@@ -31,15 +31,18 @@ function Login() {
     )
 }
 
+//Login user
 const loginUser = async () => {
+
+    //Get 'email' and 'password' values from emailInput and passwordInput elements
     const email = document.getElementById('emailInput').value
     const password = document.getElementById('passwordInput').value
+
+    //Try logging user in, if user cannot be authenticated, catch error and alert user
     try {
-        const user = await signInWithEmailAndPassword(auth, email, password)
+        await signInWithEmailAndPassword(auth, email, password)
         navigate('/chat')
     }catch(err) {
         alert('Login credentials incorrect, try again')
     }
 }
-
-export default Login;

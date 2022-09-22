@@ -1,11 +1,12 @@
 import { signOut } from 'firebase/auth'
-import { doc, updateDoc, getDoc, collection, query, onSnapshot, addDoc, orderBy, serverTimestamp, getDocs, where } from "firebase/firestore"; 
+import { doc, updateDoc, getDoc, collection, query, onSnapshot, addDoc, orderBy, serverTimestamp, getDocs } from "firebase/firestore"; 
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { auth, db } from '../firebase-config'
 import './Chat.css'
 import Message from '../components/Message'
 
+//Global variable 'nickname' to store current user nickname or desired nickname
 var nickname = ''
 
 export default function Chat() {
@@ -60,13 +61,19 @@ export default function Chat() {
 
 //Send new message
 const sendChat = async () => {
+
+    //IF element inputMessage value is null, return
     if(document.getElementById('inputMessage').value === '') return
+
     //IF nickname value in Firestore is null, alert user
     if((await getDoc(doc(db, 'users', auth.currentUser.uid))).data().nickname === '') {
         alert('Please set a nickname before sending a message')
+
     //IF local nickname value is null, get nickname value from Firestore
     }else if(nickname === '') {
         nickname = (await getDoc(doc(db, 'users', auth.currentUser.uid))).data().nickname
+
+        //Add message object to Firestore
         await addDoc(collection(db, 'messages'), {
             text: document.getElementById('inputMessage').value,
             nickname: nickname,
@@ -75,7 +82,7 @@ const sendChat = async () => {
             msg: true,
             info: false,
         })
-        document.getElementById('inputMessage').value = ''
+
     //Else add new message object to Firestore containing text, nickname, time and id values
     }else {
         await addDoc(collection(db, 'messages'), {
@@ -86,14 +93,15 @@ const sendChat = async () => {
             msg: true,
             info: false,
         })
-
-        // Set inputMessage element value to null
-        document.getElementById('inputMessage').value = ''
     }
+
+    // Set inputMessage element value to null
+    document.getElementById('inputMessage').value = ''
 }
 
 //Set new nickname for user
 const setNickname = async () => {
+
     //Get nickname value from inputNickname element
     nickname = document.getElementById('inputNickname').value
 
@@ -113,6 +121,8 @@ const setNickname = async () => {
 
     //IF desired nickname is not occupied, update nickname value to Firestore
     if(!isNicknameOccupied) {
+
+        // Add 'change nickname' message object to Firestore
         await addDoc(collection(db, 'messages'), {
             text: (await getDoc(doc(db, 'users', auth.currentUser.uid))).data().nickname + ' changed nickname to ' + nickname,
             time: serverTimestamp(),
@@ -120,23 +130,24 @@ const setNickname = async () => {
             msg: false,
             info: true,
         })
-
+        
+        //Update current user nickname field in Firestore
         await updateDoc(doc(db, 'users', auth.currentUser.uid), {
             nickname: nickname,
         })
+
     //IF desired nickname is occupied, alert user
     }else {
         alert('Nickname is already in use, choose another nickname')
     }
 
-    //Set inputNickname value to null
+    //Set inputNickname element value to null
     nickname = document.getElementById('inputNickname').value = ''
-
-    // CHANGE NEW NICKNAME TO PREVIOUS MESSAGES
 }
 
 //Log out user
 const logoutUser = async () => {
+
     //Set local nickname value to null
     nickname = ''
 
