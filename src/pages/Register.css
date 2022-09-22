@@ -1,0 +1,103 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: rgb(167, 73, 255);
+}
+
+.registerContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+
+.registerHeader {
+    display: flex;
+    width: 100%;
+    max-width: 100vw;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid whitesmoke;
+    background-color: rgba(255, 255, 255, 0);
+}
+
+.registerContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+h1 {
+    font-size: 3em;
+    font-weight: bold;
+    color: whitesmoke;
+}
+
+.emailInput {
+    margin-bottom: 15px;
+    width: 55vw;
+    height: 3vh;
+}
+
+.passwordInput {
+    margin-bottom: 15px;
+    width: 55vw;
+    height: 3vh;
+}
+
+p {
+    color: whitesmoke;
+}
+
+.registerBtn {
+    margin-top: 30px;
+    width: 25vw;
+    height: 4vh;
+    font-size: 1.2em;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-bottom: 20px;
+    margin-right: 20px;
+}
+
+.backLink {
+    color: whitesmoke;
+}
+
+@media (min-width: 600px) {
+    .emailInput {
+        margin-bottom: 20px;
+        width: 330px;
+        height: 4vh;
+    }
+
+    .passwordInput {
+        margin-bottom: 20px;
+        width: 330px;
+        height: 4vh;
+    }
+
+    .registerBtn {
+        margin-top: 40px;
+        width: 150px;
+        height: 6vh;
+        font-size: 1.5em;
+    }
+
+    footer {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        margin-bottom: 30px;
+        margin-right: 40px;
+    }
+}

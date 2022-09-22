@@ -1,0 +1,132 @@
+.chatContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.chatHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-block: 20px;
+    max-width: 100%;
+}
+
+.logOutBtn {
+    position: absolute;
+    left: 10px;
+    padding: 10px;
+    height: 3vh;
+    color: whitesmoke;
+}
+
+.content {
+    width: 100%;
+    padding: 10px;
+}
+
+.inputNickname {
+    margin-right: 5px;
+    height: 3vh;
+    width: 30vw;
+}
+
+.setNickname {
+    height: 3vh;
+    width: 10vw;
+}
+
+.chatContent {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    min-height: 75vh;
+    max-height: 75vh;
+    width: 80vw;
+    box-shadow: 5px;
+    border: 1px solid rgb(200, 142, 255);
+    padding: 20px;
+    overflow-y: scroll;
+}
+
+.chatDiv {
+    width: 100%;
+    border: 1px solid rgb(200, 142, 255);
+    padding: 15px;
+    margin-top: 10px;
+}
+
+.infoDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    border: 1px solid rgb(200, 142, 255);
+    padding: 15px;
+    margin-top: 10px;
+}
+
+.chatFooter {
+    display: flex;
+    flex-direction: column;
+    width: 80vw;
+    padding-block: 20px;
+    align-items: center;
+    justify-content: center;
+    bottom: 0;
+    /* border: 1px solid green; */
+}
+
+.inputMessage {
+    width: 80vw;
+    height: 3vh;
+}
+
+.sendBtn {
+    margin-top: 10px;
+    width: 15vw;
+    height: 4vh;
+}
+
+.notLoggedContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid green;
+}
+
+.accessDenied {
+    color: black;
+}
+
+h3 {
+    font-size: 2em;
+}
+
+@media (min-width: 500px) {
+    .inputNickname {
+        height: 3vh;
+        width: 150px;
+    }
+    
+    .setNickname {
+        width: 50px;
+        height: 3vh;
+    }
+}
+
+@media (min-width: 700px) {
+    .inputMessage {
+        width: 560px;
+        height: 3vh;
+    }
+
+    .sendBtn {
+        margin-top: 10px;
+        width: 105px;
+        height: 4vh;
+    }
+}
